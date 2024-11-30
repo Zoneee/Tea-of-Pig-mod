@@ -2,5 +2,9 @@
 a mod named Tea of pig for DST
 
 # How to release the mod
-change release.bat and replace with your path.
-run the release.bat
+change compile.bat and replace with your path.
+run the compile.bat
+
+# Learning
+https://cn-dst-developer.github.io/
+https://atjiu.github.io/dstmod-tutorial/#/
