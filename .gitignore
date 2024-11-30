@@ -1,1 +1,4 @@
 /init.bat
+others/
+*.tex
+*.xml

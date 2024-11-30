@@ -1,1 +1,3 @@
-print("hello world")
+PrefabFiles = {"pidan"}
+
+modimport("languages/chs")
