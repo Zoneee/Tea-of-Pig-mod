@@ -1,62 +1,86 @@
+@REM 设置编码格式为UTF-8
+
+@REM 打印 "step1"
+@REM 打印 "请输入Mod名称："，要求用户输入Mod名称
+@REM 打印 "请输入Mod描述："，要求用户输入Mod描述
+@REM 打印 "请输入作者名称："，要求用户输入作者名称
+
+@REM 打印 "step2"
+@REM 使用Mod名称创建文件夹，下方称该文件夹为root
+@REM 在root中创建README.md文件，写入第6行到第22行信息
+@REM 路径名	内容
+@REM ./images/	一些零碎贴图
+@REM ./images/inventoryimages/	物品栏贴图
+@REM ./images/map_icons/	小地图图标
+@REM ./images/colour_cubes/	滤镜
+@REM ./anim/	编译后的动画文件
+@REM ./export/	未编译的动画文件
+@REM ./scripts/	所有脚本一般都放在这里
+@REM ./scripts/brains/	AI相关代码
+@REM ./scripts/components/	自定义组件目录
+@REM ./scripts/prefabs/	模组添加的全部物体，包括人物、物品、buff类
+@REM ./scripts/stategraphs/	自定义的动作图
+@REM ./scripts/widgets/	自定义窗体相关脚本
+@REM ./modinfo.lua	游戏内模组介绍及模组配置都在这里
+@REM ./modmain.lua	模组代码入口
+@REM ./modworldgenmain.lua	加载MOD时运行，优先级比modmain高，在这里可以修改世界生成
+@REM ./modservercreationmain.lua	暂时与modworldgenmain功能类似，但只会在服务器加载
+
+@REM 打印 "step3"
+@REM 在root中创建src文件夹
+@REM 在src下根据第7行到第22行信息创建相应文件夹和文件
+@REM 打印 "文件夹和文件创建完成"
+@REM 等待用户输入任意键后退出
+
 @echo off
 chcp 65001
 
-setlocal enabledelayedexpansion
+echo step1
+set /p modName=请输入Mod名称：
 
-set /p modname="请输入Mod名称: "
-if "!modname!"=="" set modname=MyFirstMod
 
-:: 输入Mod描述
-set /p description="请输入Mod描述: "
-if "!description!"=="" set description=A simple mod for testing
+set /p modDesc=请输入Mod描述：
 
-set /p author="请输入作者名称: "
-if "!author!"=="" set author=YourName
 
-for /f "tokens=2 delims==" %%I in ('"wmic os get localdatetime /value"') do set datetime=%%I
-set foldername=!modname!_%datetime:~0,8%_%datetime:~8,6%
+set /p authorName=请输入作者名称：
 
-echo 创建Mod文件夹：!foldername!
-mkdir "!foldername!"
-cd "!foldername!"
-mkdir "src"
-cd "src"
-mkdir "scripts"
-mkdir "images"
-mkdir "sounds"
-mkdir "prefabs"
-
-echo 创建 modinfo.lua 文件...
+echo step2
+mkdir "%modName%"
+cd "%modName%"
 (
-    echo name = "!modname!"
-    echo description = "!description!"
-    echo author = "!author!"
-    echo version = "1.0"
-    echo api_version = 10
-    echo dont_starve_compatible = true
-    echo reign_of_giants_compatible = true
-    echo shipwrecked_compatible = true
-    echo dst_compatible = false
-    echo forumthread = ""
-) > "!foldername!\src\modinfo.lua"
+    echo # %modName%
+    echo %modDesc%
+    echo.
+    echo ## 作者
+    echo %authorName%
+    echo.
+    echo ## 目录结构
+    echo ```
+    echo ./images/ 一些零碎贴图
+    echo ./images/inventoryimages/ 物品栏贴图
+    echo ./images/map_icons/ 小地图图标
+    echo ./images/colour_cubes/ 滤镜
+    echo ./anim/ 编译后的动画文件
+    echo ./export/ 未编译的动画文件
+    echo ./scripts/ 所有脚本一般都放在这里
+    echo ./scripts/brains/ AI相关代码
+    echo ./scripts/components/ 自定义组件目录
+    echo ./scripts/prefabs/ 模组添加的全部物体，包括人物、物品、buff类
+    echo ./scripts/stategraphs/ 自定义的动作图
+    echo ./scripts/widgets/ 自定义窗体相关脚本
+    echo ./modinfo.lua 游戏内模组介绍及模组配置都在这里
+    echo ./modmain.lua 模组代码入口
+    echo ./modworldgenmain.lua 加载MOD时运行，优先级比modmain高，在这里可以修改世界生成
+    echo ./modservercreationmain.lua 暂时与modworldgenmain功能类似，但只会在服务器加载
+    echo ```
+) > README.md
 
-echo 创建 modmain.lua 文件...
-echo "" > "!foldername!\src\modmain.lua"
+echo step3
+mkdir src
+cd src
+mkdir images images\inventoryimages images\map_icons images\colour_cubes anim export scripts scripts\brains scripts\components scripts\prefabs scripts\stategraphs scripts\widgets
+cd ..
+echo 文件夹和文件创建完成
 
-(
-    echo local function fn()
-    echo     local inst = CreateEntity()
-    echo     inst:AddComponent("inventoryitem")
-    echo     inst:AddComponent("inspectable")
-    echo     inst:AddComponent("stackable")
-    echo     inst.components.inventoryitem.imagename = "myitem"
-    echo     inst.components.inventoryitem.atlasname = "images/inventoryimages/myitem.xml"
-    echo     return inst
-    echo end
-    echo local my_item = Prefab("myitem", fn)
-    echo return my_item
-) > "!foldername!\src\modmain.lua"
 
-echo 初始化完成！新的Mod文件夹已创建：!foldername!
-echo 所有文件都放在 "src" 文件夹内，你可以在该目录下开始编辑你的Mod。
 pause
