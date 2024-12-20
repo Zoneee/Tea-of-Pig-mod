@@ -1,2 +1,2 @@
-STRINGS.NAMES.NATIE = "拿铁"  -- 名字
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIDAN = "像滚烫的烂泥" -- 按alt检查时人物说的话
+STRINGS.NAMES.PIDAN = "皮蛋"  -- 皮蛋的名字
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.PIDAN = "吃一口，神清气爽" -- 按alt检查时人物说的话

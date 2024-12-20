@@ -1,8 +1,8 @@
 -- 加载贴图，动画
-local assets = {Asset("ANIM", "anim/natie.zip"), Asset("IMAGE", "images/natie.tex"), Asset("ATLAS", "images/natie.xml")}
+local assets = {Asset("ANIM", "anim/pidan.zip"), Asset("IMAGE", "images/pidan.tex"), Asset("ATLAS", "images/pidan.xml")}
 
 function fn()
-    local assetname = "natie"
+    local assetname = "pidan"
 
     local inst = CreateEntity() -- 创建实体
     inst.entity:AddTransform() -- 添加xyz形变对象
@@ -24,7 +24,7 @@ function fn()
     inst:AddComponent("inspectable") -- 可检查组件
     inst:AddComponent("inventoryitem") -- 物品组件
 
-    inst.components.inventoryitem.atlasname = "images/natie.xml" -- 在背包里的贴图
+    inst.components.inventoryitem.atlasname = "images/pidan.xml" -- 在背包里的贴图
 
     inst:AddComponent("edible") -- 可食物组件
     inst.components.edible.foodtype = FOODTYPE.MEAT
@@ -46,4 +46,4 @@ function fn()
     return inst
 end
 
-return Prefab("natie", fn, assets, prefabs)
+return Prefab("pidan", fn, assets, prefabs)
