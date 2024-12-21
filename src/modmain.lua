@@ -1,5 +1,5 @@
-PrefabFiles = {"pidan"}
-
-modimport("languages/chs")
-
--- TODO: 有bug，可能是引用问题。尝试按照教程把all code都放到modmain里面
+-- Load external files for organization.
+modimport("scripts/assets.lua")
+modimport("scripts/ingredient_values.lua")
+modimport("scripts/recipes/pidan_recipe.lua")
+modimport("languages/chs.lua")

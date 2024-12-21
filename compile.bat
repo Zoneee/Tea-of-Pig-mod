@@ -12,6 +12,7 @@ chcp 65001
 @REM 复制origin/src文件夹下的所有文件到output文件夹
 @REM 运行compiler编译
 @REM 将output/images下modicon.tex和modicon.xml复制到output文件夹下
+@REM 打开output文件夹
 
 
 set output="D:\G_Games\steam\steamapps\common\Don't Starve Together\mods\Tea-of-Pig"
@@ -43,6 +44,10 @@ copy %output%\images\modicon.tex %output%
 copy %output%\images\modicon.xml %output%
 echo Modicon files copied successfully.
 
+echo ==============================
+echo Opening output folder...
+echo ==============================
+start "" %output%
 
 @REM 将output/images文件夹下的所有文件复制回来(?)
 @REM 将output/anim文件夹下的所有文件复制回来(?)

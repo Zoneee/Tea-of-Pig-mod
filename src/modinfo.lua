@@ -9,8 +9,8 @@ version = "0.1"
 -- klei官方论坛地址，为空则默认是工坊的地址
 forumthread = ""
 -- modicon
-icon_atlas = "images/modicon.xml"
-icon = "images/modicon.tex"
+icon_atlas = "modicon.xml"
+icon = "modicon.tex"
 -- dst兼容
 dst_compatible = true
 -- 是否是客户端mod
